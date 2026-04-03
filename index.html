@@ -12,7 +12,6 @@
   --green:#2E7D32; --dkgreen:#1B5E20; --ltgreen:#E8F5E9; --mdgreen:#C8E6C9;
   --rose:#B14B6F;  --ltrose:#FCE4EC;
   --black:#000000; --white:#FFFFFF;
-
   --bg:#FFFFFF; --surface:#F4F9F4; --card:#FFFFFF;
   --border:#C8E6C9; --text:#000000; --muted:#4A6F4C;
   --input-bg:#F9FDF9; --shadow:rgba(0,0,0,0.08);
@@ -47,11 +46,7 @@ h1{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;}
 .theme-btn:hover{background:rgba(255,255,255,.28);}
 
 /* ── SYNC BADGE ── */
-.sync-badge{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);
-  border-radius:18px;padding:5px 12px;font-size:11px;color:#fff;font-weight:600;
-}
+.sync-badge{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);border-radius:18px;padding:5px 12px;font-size:11px;color:#fff;font-weight:600;}
 .sync-dot{width:8px;height:8px;border-radius:50%;background:#4CAF50;flex-shrink:0;}
 .sync-dot.off{background:#888;}
 .sync-dot.pulse{animation:pulse 1.4s ease-in-out infinite;}
@@ -70,43 +65,42 @@ select:focus,input:focus{border-color:var(--green);}
 .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;}
 .kpi{background:var(--card);border:1.5px solid var(--border);border-radius:13px;padding:16px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 7px var(--shadow);}
 .kpi:hover{transform:translateY(-3px);box-shadow:0 7px 20px var(--shadow);}
-.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.kpi:nth-child(odd)::before{background:var(--green);}
-.kpi:nth-child(even)::before{background:var(--rose);}
 .kpi-name{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
 .kpi-val{font-family:'Syne',sans-serif;font-size:27px;font-weight:800;line-height:1;}
-.kpi:nth-child(odd)  .kpi-val{color:var(--green);}
-.kpi:nth-child(even) .kpi-val{color:var(--rose);}
 .kpi-sub{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.5;}
 
-/* ── CARDS ── */
-.chart-card,.tbl-card,.entry-panel,.sync-card{background:var(--card);border:1.5px solid var(--border);border-radius:13px;padding:20px;margin-bottom:20px;box-shadow:0 2px 7px var(--shadow);}
-.chart-card canvas{max-height:290px;}
+/* ── SPLIT CHART ROW ── */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--card);border:1.5px solid var(--border);border-radius:13px;padding:20px;box-shadow:0 2px 7px var(--shadow);}
+.chart-inner{position:relative;width:100%;height:280px;}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
+.legend-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+/* ── TABLE CARD ── */
+.tbl-card,.entry-panel,.sync-card{background:var(--card);border:1.5px solid var(--border);border-radius:13px;padding:20px;margin-bottom:20px;box-shadow:0 2px 7px var(--shadow);}
+.tbl-card table{width:100%;border-collapse:collapse;}
+.tbl-card thead th{background:var(--surface);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:9px 12px;text-align:left;border-bottom:1.5px solid var(--border);}
+.tbl-card tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+.tbl-card tbody tr:hover{background:var(--row-hover);}
+.tbl-card tbody td{padding:8px 12px;font-size:13px;color:var(--text);vertical-align:middle;}
+.tbl-card td.num{font-family:'Syne',sans-serif;font-weight:600;}
+.tbl-card .totrow td{background:var(--sub)!important;}
+.person-cell{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;vertical-align:middle!important;}
+.type-sel{background:var(--input-bg);border:1.5px solid var(--border);color:var(--text);padding:5px 9px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:12px;outline:none;cursor:pointer;min-width:110px;transition:border-color .2s;}
+.type-sel:focus{border-color:var(--green);}
+.badge{display:inline-block;padding:2px 8px;border-radius:14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.bg{background:var(--tag-g);color:var(--green);border:1px solid rgba(46,125,50,.2);}
+.br{background:var(--tag-r);color:var(--rose);border:1px solid rgba(177,75,111,.2);}
 
 /* ── SYNC CARD ── */
 .sync-card{border:2px solid var(--green);}
 .sync-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
-
-/* auto sync row */
 .sync-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
-.sync-status-bar{
-  flex:1;min-width:180px;background:var(--surface);border:1.5px solid var(--border);
-  border-radius:8px;padding:9px 14px;font-size:12px;color:var(--muted);
-  display:flex;align-items:center;gap:8px;
-}
+.sync-status-bar{flex:1;min-width:180px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:9px 14px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
 .sync-status-bar b{color:var(--text);}
-.countdown{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:11px;
-  color:var(--green);background:var(--tag-g);
-  padding:3px 9px;border-radius:10px;border:1px solid rgba(46,125,50,.25);
-}
-
-/* manual import drop zone */
-.drop-zone{
-  border:2px dashed var(--border);border-radius:10px;
-  padding:22px 18px;text-align:center;cursor:pointer;
-  transition:border-color .2s,background .2s;background:var(--sub);position:relative;
-}
+.countdown{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;color:var(--green);background:var(--tag-g);padding:3px 9px;border-radius:10px;border:1px solid rgba(46,125,50,.25);}
+.drop-zone{border:2px dashed var(--border);border-radius:10px;padding:22px 18px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:var(--sub);position:relative;}
 .drop-zone.dragover{border-color:var(--green);background:var(--tag-g);}
 .drop-zone input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
 .drop-icon{font-size:28px;margin-bottom:6px;}
@@ -115,25 +109,11 @@ select:focus,input:focus{border-color:var(--green);}
 .import-msg{margin-top:12px;padding:10px 14px;border-radius:7px;font-size:12px;display:none;}
 .msg-ok{background:var(--tag-g);color:var(--green);border:1.5px solid rgba(46,125,50,.3);}
 .msg-err{background:var(--tag-r);color:var(--rose);border:1.5px solid rgba(177,75,111,.3);}
-
-/* format guide */
 .fmt-guide{margin-top:14px;background:var(--surface);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--muted);line-height:1.7;}
 .fmt-guide strong{color:var(--text);}
 .fmt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:9px;}
 .fmt-col{background:var(--card);border:1.5px solid var(--border);border-radius:7px;padding:9px 11px;}
 .fmt-col b{font-family:'Syne',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--green);}
-
-/* ── TABLE ── */
-table{width:100%;border-collapse:collapse;}
-thead th{background:var(--surface);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:9px 12px;text-align:left;border-bottom:1.5px solid var(--border);}
-tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
-tbody tr:hover{background:var(--row-hover);}
-tbody td{padding:9px 12px;font-size:13px;color:var(--text);}
-td.num{font-family:'Syne',sans-serif;font-weight:600;}
-.totrow td{background:var(--sub)!important;}
-.badge{display:inline-block;padding:2px 8px;border-radius:14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-.bg{background:var(--tag-g);color:var(--green);border:1px solid rgba(46,125,50,.2);}
-.br{background:var(--tag-r);color:var(--rose);border:1px solid rgba(177,75,111,.2);}
 
 /* ── ENTRY PANEL ── */
 .entry-panel>h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:7px;}
@@ -170,17 +150,20 @@ td.num{font-family:'Syne',sans-serif;font-weight:600;}
 .btn-connect:hover{background:var(--dkgreen);}
 .btn-disconnect{background:var(--tag-r);color:var(--rose);border:1.5px solid rgba(177,75,111,.35);padding:8px 16px;font-size:12px;}
 .btn-disconnect:hover{background:var(--ltrose);}
-.btn-manual{background:var(--tag-g);color:var(--green);border:1.5px solid rgba(46,125,50,.3);padding:8px 16px;font-size:12px;}
 .save-msg{display:none;background:var(--tag-g);color:var(--green);border:1.5px solid rgba(46,125,50,.3);border-radius:7px;padding:8px 13px;margin-top:10px;font-size:12px;}
-
-/* dividers */
 .divider{height:1.5px;background:var(--border);margin:14px 0;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .an{animation:fadeUp .38s ease both;}
 .d1{animation-delay:.04s}.d2{animation-delay:.09s}.d3{animation-delay:.14s}
 
-@media(max-width:860px){header{padding:11px 13px;flex-direction:column;gap:9px;}.main{padding:14px 11px;}.kpi-grid{grid-template-columns:repeat(2,1fr);}.fmt-grid{grid-template-columns:1fr;}}
+@media(max-width:860px){
+  header{padding:11px 13px;flex-direction:column;gap:9px;}
+  .main{padding:14px 11px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .chart-row{grid-template-columns:1fr;}
+  .fmt-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -206,17 +189,34 @@ td.num{font-family:'Syne',sans-serif;font-weight:600;}
   <!-- KPI -->
   <div class="kpi-grid an d1" id="kpiRow"></div>
 
-  <!-- CHART -->
-  <div class="chart-card an d2">
-    <div class="stitle"><span class="dot" style="background:var(--green)"></span>Page Build &amp; Page Edit — Calculated Hours per Person</div>
-    <canvas id="combinedChart"></canvas>
+  <!-- SPLIT CHARTS -->
+  <div class="chart-row an d2">
+    <div class="chart-card">
+      <div class="stitle"><span class="dot" style="background:#E65100"></span>Page Build — Calculated Hours per Person</div>
+      <div class="chart-inner"><canvas id="buildChart"></canvas></div>
+      <div class="chart-legend" id="buildLegend"></div>
+    </div>
+    <div class="chart-card">
+      <div class="stitle"><span class="dot" style="background:#E65100"></span>Page Edit — Hours Distribution</div>
+      <div class="chart-inner"><canvas id="editChart"></canvas></div>
+      <div class="chart-legend" id="editLegend"></div>
+    </div>
   </div>
 
-  <!-- TABLE -->
+  <!-- SUMMARY TABLE -->
   <div class="tbl-card an d2">
-    <div class="stitle"><span class="dot" style="background:var(--rose)"></span>Summary — Pages &amp; Calculated Hours</div>
+    <div class="stitle"><span class="dot" style="background:var(--green)"></span>Summary — Pages &amp; Calculated Hours</div>
     <table>
-      <thead><tr><th>Person</th><th>Section</th><th>Type</th><th>Fixed Rate</th><th>Pages</th><th>Calculated Hours</th></tr></thead>
+      <thead>
+        <tr>
+          <th style="width:110px">Person</th>
+          <th style="width:85px">Section</th>
+          <th style="width:150px">Type</th>
+          <th style="width:110px">Fixed Rate</th>
+          <th style="width:90px">Pages</th>
+          <th>Calculated Hours</th>
+        </tr>
+      </thead>
       <tbody id="tableBody"></tbody>
     </table>
   </div>
@@ -224,34 +224,17 @@ td.num{font-family:'Syne',sans-serif;font-weight:600;}
   <!-- AUTO SYNC CARD -->
   <div class="sync-card an d3">
     <h3>🔄 Excel Auto-Sync</h3>
-
-    <!-- METHOD 1: File System Access API (auto-watch) -->
-    <div class="stitle" style="font-size:13px;margin-bottom:8px;">
-      <span class="dot" style="background:var(--green)"></span>
-      Method 1 — Connect &amp; Auto-Sync (Recommended)
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6;">
-      Connect your Excel file once. The dashboard checks for changes every <strong style="color:var(--text)">5 seconds</strong> and auto-updates all KPIs, chart, and table — no re-upload needed. Works while you keep editing the file.
-    </p>
+    <div class="stitle" style="font-size:13px;margin-bottom:8px;"><span class="dot" style="background:var(--green)"></span>Method 1 — Connect &amp; Auto-Sync (Recommended)</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6;">Connect your Excel file once. The dashboard checks for changes every <strong style="color:var(--text)">5 seconds</strong> and auto-updates all KPIs, charts, and table — no re-upload needed.</p>
     <div class="sync-row">
       <button class="btn btn-connect" id="connectBtn" onclick="connectFile()">📂 Connect Excel File</button>
       <button class="btn btn-disconnect" id="disconnectBtn" style="display:none" onclick="disconnectFile()">✕ Disconnect</button>
-      <div class="sync-status-bar" id="syncStatusBar">
-        <span>No file connected</span>
-      </div>
+      <div class="sync-status-bar" id="syncStatusBar"><span>No file connected</span></div>
       <span class="countdown" id="countdown" style="display:none"></span>
     </div>
-    <div id="apiWarning" style="display:none;font-size:12px;color:var(--rose);background:var(--tag-r);border-radius:7px;padding:8px 12px;margin-top:6px;border:1px solid rgba(177,75,111,.25);">
-      ⚠️ Your browser does not support the File System Access API. Please use Method 2 (manual upload) below, or open the dashboard in Chrome / Edge.
-    </div>
-
+    <div id="apiWarning" style="display:none;font-size:12px;color:var(--rose);background:var(--tag-r);border-radius:7px;padding:8px 12px;margin-top:6px;border:1px solid rgba(177,75,111,.25);">⚠️ Your browser does not support the File System Access API. Please use Method 2 below, or open the dashboard in Chrome / Edge.</div>
     <div class="divider"></div>
-
-    <!-- METHOD 2: Manual upload -->
-    <div class="stitle" style="font-size:13px;margin-bottom:8px;">
-      <span class="dot" style="background:var(--rose)"></span>
-      Method 2 — Manual Upload
-    </div>
+    <div class="stitle" style="font-size:13px;margin-bottom:8px;"><span class="dot" style="background:var(--rose)"></span>Method 2 — Manual Upload</div>
     <div class="drop-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
       <input type="file" accept=".xlsx,.xls,.csv" onchange="onFileSelect(event)">
       <div class="drop-icon">📂</div>
@@ -260,10 +243,7 @@ td.num{font-family:'Syne',sans-serif;font-weight:600;}
     </div>
     <div class="import-msg msg-ok" id="importOk"></div>
     <div class="import-msg msg-err" id="importErr"></div>
-
     <div class="divider"></div>
-
-    <!-- FORMAT guide -->
     <div class="fmt-guide">
       <strong>📋 Expected Excel Format</strong> — column names are flexible, the importer matches by keyword:
       <div class="fmt-grid">
@@ -312,21 +292,25 @@ td.num{font-family:'Syne',sans-serif;font-weight:600;}
 const MEMBERS     = ['Ramesh','Parivallal','Srinadh','Vigneswari','Krishna'];
 const MONTH_NAMES = ['January','February','March','April','May','June',
                      'July','August','September','October','November','December'];
-const BUILD_RATES = {Complex:2.5,Moderate:2.0,Simple:1.5};
-const EDIT_RATES  = {Complex:1.0,Moderate:0.75,Simple:0.5};
+const BUILD_RATES = {Complex:2.5, Moderate:2.0, Simple:1.5};
+const EDIT_RATES  = {Complex:1.0, Moderate:0.75, Simple:0.5};
 const FIXED_BUILD = Object.keys(BUILD_RATES);
 const FIXED_EDIT  = Object.keys(EDIT_RATES);
-const SYNC_INTERVAL = 5000; // 5 seconds
+const SYNC_INTERVAL = 5000;
+
+// Shared palette: orange, yellow, green, blue, red
+// Same colors for column chart (build) AND pie chart (edit)
+const PERSON_COLORS = ['#E65100','#F9A825','#2E7D32','#1565C0','#C62828'];
 
 // ════════════════════════════════════════
 //  THEME
 // ════════════════════════════════════════
-let isDark=false;
+let isDark = false;
 function toggleTheme(){
-  isDark=!isDark;
-  document.documentElement.setAttribute('data-theme',isDark?'dark':'light');
-  document.getElementById('themeBtn').textContent=isDark?'☀️ Light':'🌙 Dark';
-  renderChart();
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+  renderCharts();
 }
 
 // ════════════════════════════════════════
@@ -356,120 +340,25 @@ let extraCount={};
 // ════════════════════════════════════════
 //  HELPERS
 // ════════════════════════════════════════
-function sortedKeys(){
-  return Object.keys(DB).sort((a,b)=>{
-    const[ma,ya]=a.split(' ');const[mb,yb]=b.split(' ');
-    return(+ya-+yb)||(MONTH_NAMES.indexOf(ma)-MONTH_NAMES.indexOf(mb));
-  });
-}
+function sortedKeys(){return Object.keys(DB).sort((a,b)=>{const[ma,ya]=a.split(' ');const[mb,yb]=b.split(' ');return(+ya-+yb)||(MONTH_NAMES.indexOf(ma)-MONTH_NAMES.indexOf(mb));});}
 function getP(p,mo){return DB[mo]?.[p]||emptyPerson();}
 function calcBuild(p,mo){const bd=getP(p,mo).build;return+(FIXED_BUILD.reduce((s,t)=>s+(+(bd[t]||0))*BUILD_RATES[t],0)+(bd.extra||[]).reduce((s,r)=>s+(+r.hrs||0),0)).toFixed(2);}
 function calcEdit(p,mo){const ed=getP(p,mo).edit;return+(FIXED_EDIT.reduce((s,t)=>s+(+(ed[t]||0))*EDIT_RATES[t],0)+(ed.extra||[]).reduce((s,r)=>s+(+r.hrs||0),0)).toFixed(2);}
 function calcTotal(p,mo){return+(calcBuild(p,mo)+calcEdit(p,mo)).toFixed(2);}
 
 // ════════════════════════════════════════
-//  AUTO-SYNC (File System Access API)
+//  AUTO-SYNC
 // ════════════════════════════════════════
-let syncHandle=null;
-let syncTimer=null;
-let countdownTimer=null;
-let countdownVal=5;
-let lastFileSize=0;
-let lastModified='';
-
+let syncHandle=null,syncTimer=null,countdownTimer=null,countdownVal=5,lastModified='';
 async function connectFile(){
-  if(!('showOpenFilePicker' in window)){
-    document.getElementById('apiWarning').style.display='block';
-    return;
-  }
-  try{
-    const [handle]=await window.showOpenFilePicker({
-      types:[{description:'Excel / CSV',accept:{'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':['.xlsx'],
-        'application/vnd.ms-excel':['.xls'],'text/csv':['.csv']}}],
-    });
-    syncHandle=handle;
-    startSync();
-  }catch(e){/* user cancelled */}
+  if(!('showOpenFilePicker' in window)){document.getElementById('apiWarning').style.display='block';return;}
+  try{const[handle]=await window.showOpenFilePicker({types:[{description:'Excel / CSV',accept:{'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':['.xlsx'],'application/vnd.ms-excel':['.xls'],'text/csv':['.csv']}}]});syncHandle=handle;startSync();}catch(e){}
 }
-
-function startSync(){
-  document.getElementById('connectBtn').style.display='none';
-  document.getElementById('disconnectBtn').style.display='inline-flex';
-  updateSyncUI(true);
-  doSync(); // immediate first read
-  syncTimer=setInterval(doSync,SYNC_INTERVAL);
-  startCountdown();
-}
-
-function startCountdown(){
-  countdownVal=5;
-  if(countdownTimer)clearInterval(countdownTimer);
-  countdownTimer=setInterval(()=>{
-    countdownVal--;
-    const el=document.getElementById('countdown');
-    if(el)el.textContent=`Next check in ${countdownVal}s`;
-    if(countdownVal<=0)countdownVal=5;
-  },1000);
-  const el=document.getElementById('countdown');
-  if(el){el.style.display='inline-block';el.textContent='Checking in 5s';}
-}
-
-async function doSync(){
-  if(!syncHandle)return;
-  try{
-    const file=await syncHandle.getFile();
-    // detect change by lastModified timestamp
-    const sig=file.lastModified+'_'+file.size;
-    if(sig===lastModified){countdownVal=5;return;} // no change
-    lastModified=sig;
-    const ab=await file.arrayBuffer();
-    const wb=XLSX.read(ab,{type:'array'});
-    const res=[];
-    let detectedMonth=null;
-    wb.SheetNames.forEach(sn=>{
-      const ws=wb.Sheets[sn];
-      const data=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
-      // read month/year from E2, H2
-      if(!detectedMonth){
-        const m=String(data[1]?.[4]||'').trim();
-        const y=String(data[1]?.[7]||'').trim();
-        if(MONTH_NAMES.includes(m)&&+y>2000)detectedMonth=`${m} ${y}`;
-      }
-      parseSheet(data,sn,res);
-    });
-    applyImport(res,detectedMonth);
-    updateSyncUI(true,syncHandle.name||'Excel file');
-    countdownVal=5;
-  }catch(e){
-    updateSyncUI(false,'Read error — file may be locked');
-  }
-}
-
-function disconnectFile(){
-  syncHandle=null;
-  clearInterval(syncTimer);
-  clearInterval(countdownTimer);
-  syncTimer=null;
-  document.getElementById('connectBtn').style.display='inline-flex';
-  document.getElementById('disconnectBtn').style.display='none';
-  document.getElementById('countdown').style.display='none';
-  updateSyncUI(false);
-}
-
-function updateSyncUI(active, filename=''){
-  const dot=document.getElementById('syncDot');
-  const lbl=document.getElementById('syncLabel');
-  const bar=document.getElementById('syncStatusBar');
-  if(active){
-    dot.className='sync-dot pulse';
-    lbl.textContent='Auto-syncing';
-    bar.innerHTML=`<span>🔗 Connected: <b>${filename||syncHandle?.name||'file'}</b></span>`;
-  } else {
-    dot.className='sync-dot off';
-    lbl.textContent='Not syncing';
-    bar.innerHTML=`<span>${filename||'No file connected'}</span>`;
-  }
-}
+function startSync(){document.getElementById('connectBtn').style.display='none';document.getElementById('disconnectBtn').style.display='inline-flex';updateSyncUI(true);doSync();syncTimer=setInterval(doSync,SYNC_INTERVAL);startCountdown();}
+function startCountdown(){countdownVal=5;if(countdownTimer)clearInterval(countdownTimer);countdownTimer=setInterval(()=>{countdownVal--;const el=document.getElementById('countdown');if(el)el.textContent=`Next check in ${countdownVal}s`;if(countdownVal<=0)countdownVal=5;},1000);const el=document.getElementById('countdown');if(el){el.style.display='inline-block';el.textContent='Checking in 5s';}}
+async function doSync(){if(!syncHandle)return;try{const file=await syncHandle.getFile();const sig=file.lastModified+'_'+file.size;if(sig===lastModified){countdownVal=5;return;}lastModified=sig;const ab=await file.arrayBuffer();const wb=XLSX.read(ab,{type:'array'});const res=[];let detectedMonth=null;wb.SheetNames.forEach(sn=>{const ws=wb.Sheets[sn];const data=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});if(!detectedMonth){const m=String(data[1]?.[4]||'').trim();const y=String(data[1]?.[7]||'').trim();if(MONTH_NAMES.includes(m)&&+y>2000)detectedMonth=`${m} ${y}`;}parseSheet(data,sn,res);});applyImport(res,detectedMonth);updateSyncUI(true,syncHandle.name||'Excel file');countdownVal=5;}catch(e){updateSyncUI(false,'Read error — file may be locked');}}
+function disconnectFile(){syncHandle=null;clearInterval(syncTimer);clearInterval(countdownTimer);syncTimer=null;document.getElementById('connectBtn').style.display='inline-flex';document.getElementById('disconnectBtn').style.display='none';document.getElementById('countdown').style.display='none';updateSyncUI(false);}
+function updateSyncUI(active,filename=''){const dot=document.getElementById('syncDot');const lbl=document.getElementById('syncLabel');const bar=document.getElementById('syncStatusBar');if(active){dot.className='sync-dot pulse';lbl.textContent='Auto-syncing';bar.innerHTML=`<span>🔗 Connected: <b>${filename||syncHandle?.name||'file'}</b></span>`;}else{dot.className='sync-dot off';lbl.textContent='Not syncing';bar.innerHTML=`<span>${filename||'No file connected'}</span>`;}}
 
 // ════════════════════════════════════════
 //  MANUAL UPLOAD
@@ -478,100 +367,19 @@ function onDragOver(e){e.preventDefault();document.getElementById('dropZone').cl
 function onDragLeave(){document.getElementById('dropZone').classList.remove('dragover');}
 function onDrop(e){e.preventDefault();document.getElementById('dropZone').classList.remove('dragover');const f=e.dataTransfer.files[0];if(f)processFile(f);}
 function onFileSelect(e){const f=e.target.files[0];if(f)processFile(f);}
-function processFile(file){
-  const r=new FileReader();
-  r.onload=function(e){
-    try{const wb=XLSX.read(e.target.result,{type:'array'});importWorkbook(wb,file.name);}
-    catch(err){showMsg('err','❌ Could not read file: '+err.message);}
-  };
-  r.readAsArrayBuffer(file);
-}
-function importWorkbook(wb,fname){
-  const res=[];
-  let detectedMonth=null;
-  wb.SheetNames.forEach(sn=>{
-    const ws=wb.Sheets[sn];
-    const data=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
-    if(!detectedMonth){
-      const m=String(data[1]?.[4]||'').trim();
-      const y=String(data[1]?.[7]||'').trim();
-      if(MONTH_NAMES.includes(m)&&+y>2000)detectedMonth=`${m} ${y}`;
-    }
-    parseSheet(data,sn,res);
-  });
-  if(!res.length){showMsg('err','⚠️ No matching data found. Check the format guide below.');return;}
-  applyImport(res,detectedMonth);
-  showMsg('ok',`✅ Imported ${res.length} data points from "${fname}" → ${currentMonth}`);
-}
+function processFile(file){const r=new FileReader();r.onload=function(e){try{const wb=XLSX.read(e.target.result,{type:'array'});importWorkbook(wb,file.name);}catch(err){showMsg('err','❌ Could not read file: '+err.message);}};r.readAsArrayBuffer(file);}
+function importWorkbook(wb,fname){const res=[];let detectedMonth=null;wb.SheetNames.forEach(sn=>{const ws=wb.Sheets[sn];const data=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});if(!detectedMonth){const m=String(data[1]?.[4]||'').trim();const y=String(data[1]?.[7]||'').trim();if(MONTH_NAMES.includes(m)&&+y>2000)detectedMonth=`${m} ${y}`;}parseSheet(data,sn,res);});if(!res.length){showMsg('err','⚠️ No matching data found. Check the format guide below.');return;}applyImport(res,detectedMonth);showMsg('ok',`✅ Imported ${res.length} data points from "${fname}" → ${currentMonth}`);}
 
 // ════════════════════════════════════════
-//  PARSE SHEET (shared by both methods)
+//  PARSE SHEET
 // ════════════════════════════════════════
-function parseSheet(rows,sheetName,result){
-  const sLow=sheetName.toLowerCase();
-  let secHint=sLow.includes('build')?'build':sLow.includes('edit')?'edit':null;
-  let headerRow=-1,colMap={},typeCol=-1;
-  for(let r=0;r<Math.min(rows.length,15);r++){
-    const row=rows[r];let found=0;
-    MEMBERS.forEach(m=>{row.forEach((cell,ci)=>{if(String(cell).trim().toLowerCase()===m.toLowerCase()){colMap[m]=ci;found++;}});});
-    if(found>=2){headerRow=r;row.forEach((cell,ci)=>{const v=String(cell).trim().toLowerCase();if(v==='type'||v==='page type')typeCol=ci;});if(typeCol===-1)typeCol=0;break;}
-  }
-  if(headerRow===-1||Object.keys(colMap).length<2)return;
-  let currentSec=secHint||'build';
-  for(let r=headerRow+1;r<rows.length;r++){
-    const row=rows[r];if(!row||!row.length)continue;
-    const typeVal=String(row[typeCol]||'').trim();if(!typeVal)continue;
-    const tvLow=typeVal.toLowerCase();
-    if(tvLow.includes('build')){currentSec='build';continue;}
-    if(tvLow.includes('edit')){currentSec='edit';continue;}
-    if(tvLow.includes('total')||tvLow.includes('hour'))continue;
-    let type='';
-    if(tvLow.includes('complex'))type='Complex';
-    else if(tvLow.includes('moderate')||tvLow.includes('modrate'))type='Moderate';
-    else if(tvLow.includes('simple'))type='Simple';
-    else type=typeVal;
-    MEMBERS.forEach(member=>{
-      if(colMap[member]===undefined)return;
-      const v=row[colMap[member]];
-      const pages=parseFloat(String(v||'0').replace(/[^0-9.]/g,''))||0;
-      if(pages===0)return;
-      const rate=currentSec==='build'?BUILD_RATES[type]:EDIT_RATES[type];
-      const hrs=rate?+(pages*rate).toFixed(2):pages;
-      result.push({person:member,sec:currentSec,type,pages,hrs});
-    });
-  }
-}
-
-function applyImport(result,detectedMonth){
-  let monthKey=detectedMonth||getEntryKey();
-  if(!DB[monthKey])DB[monthKey]=emptyMonth();
-  // reset fixed types for all members for this month
-  MEMBERS.forEach(p=>{
-    if(!DB[monthKey][p])DB[monthKey][p]=emptyPerson();
-    FIXED_BUILD.forEach(t=>{DB[monthKey][p].build[t]=0;});
-    FIXED_EDIT.forEach(t=>{DB[monthKey][p].edit[t]=0;});
-  });
-  result.forEach(({person,sec,type,pages})=>{
-    if(!MEMBERS.includes(person))return;
-    const pd=DB[monthKey][person];
-    const fixed=sec==='build'?FIXED_BUILD:FIXED_EDIT;
-    if(fixed.includes(type))pd[sec][type]=pages;
-    else pd[sec].extra.push({label:type,pages,hrs:pages});
-  });
-  persistDB();
-  currentMonth=monthKey;
-  rebuildMonthSelect();
-  renderDashboard();
-  buildEntryPanel();
-}
+function parseSheet(rows,sheetName,result){const sLow=sheetName.toLowerCase();let secHint=sLow.includes('build')?'build':sLow.includes('edit')?'edit':null;let headerRow=-1,colMap={},typeCol=-1;for(let r=0;r<Math.min(rows.length,15);r++){const row=rows[r];let found=0;MEMBERS.forEach(m=>{row.forEach((cell,ci)=>{if(String(cell).trim().toLowerCase()===m.toLowerCase()){colMap[m]=ci;found++;}});});if(found>=2){headerRow=r;row.forEach((cell,ci)=>{const v=String(cell).trim().toLowerCase();if(v==='type'||v==='page type')typeCol=ci;});if(typeCol===-1)typeCol=0;break;}}if(headerRow===-1||Object.keys(colMap).length<2)return;let currentSec=secHint||'build';for(let r=headerRow+1;r<rows.length;r++){const row=rows[r];if(!row||!row.length)continue;const typeVal=String(row[typeCol]||'').trim();if(!typeVal)continue;const tvLow=typeVal.toLowerCase();if(tvLow.includes('build')){currentSec='build';continue;}if(tvLow.includes('edit')){currentSec='edit';continue;}if(tvLow.includes('total')||tvLow.includes('hour'))continue;let type='';if(tvLow.includes('complex'))type='Complex';else if(tvLow.includes('moderate')||tvLow.includes('modrate'))type='Moderate';else if(tvLow.includes('simple'))type='Simple';else type=typeVal;MEMBERS.forEach(member=>{if(colMap[member]===undefined)return;const v=row[colMap[member]];const pages=parseFloat(String(v||'0').replace(/[^0-9.]/g,''))||0;if(pages===0)return;const rate=currentSec==='build'?BUILD_RATES[type]:EDIT_RATES[type];const hrs=rate?+(pages*rate).toFixed(2):pages;result.push({person:member,sec:currentSec,type,pages,hrs});});}}
+function applyImport(result,detectedMonth){let monthKey=detectedMonth||getEntryKey();if(!DB[monthKey])DB[monthKey]=emptyMonth();MEMBERS.forEach(p=>{if(!DB[monthKey][p])DB[monthKey][p]=emptyPerson();FIXED_BUILD.forEach(t=>{DB[monthKey][p].build[t]=0;});FIXED_EDIT.forEach(t=>{DB[monthKey][p].edit[t]=0;});});result.forEach(({person,sec,type,pages})=>{if(!MEMBERS.includes(person))return;const pd=DB[monthKey][person];const fixed=sec==='build'?FIXED_BUILD:FIXED_EDIT;if(fixed.includes(type))pd[sec][type]=pages;else pd[sec].extra.push({label:type,pages,hrs:pages});});persistDB();currentMonth=monthKey;rebuildMonthSelect();renderDashboard();buildEntryPanel();}
 
 // ════════════════════════════════════════
 //  MONTH SELECT
 // ════════════════════════════════════════
-function rebuildMonthSelect(){
-  const sel=document.getElementById('monthSelect');sel.innerHTML='';
-  sortedKeys().forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=k;if(k===currentMonth)o.selected=true;sel.appendChild(o);});
-}
+function rebuildMonthSelect(){const sel=document.getElementById('monthSelect');sel.innerHTML='';sortedKeys().forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=k;if(k===currentMonth)o.selected=true;sel.appendChild(o);});}
 function switchMonth(){currentMonth=document.getElementById('monthSelect').value;renderDashboard();}
 function getEntryKey(){return`${document.getElementById('entryMonth').value} ${document.getElementById('entryYear').value}`;}
 function onEntryMonthChange(){buildEntryPanel();}
@@ -580,68 +388,193 @@ function onEntryMonthChange(){buildEntryPanel();}
 //  KPI
 // ════════════════════════════════════════
 function renderKPI(){
-  const icons=['👨‍💻','👩‍💻','🧑‍💻','👩‍💻','🧑‍💻'];
-  document.getElementById('kpiRow').innerHTML=MEMBERS.map((m,i)=>{
-    const b=calcBuild(m,currentMonth),e=calcEdit(m,currentMonth);
-    return`<div class="kpi"><div class="kpi-name">${icons[i]} ${m}</div>
-    <div class="kpi-val">${+(b+e).toFixed(2)}<span style="font-size:12px;color:var(--muted);font-weight:400"> hrs</span></div>
-    <div class="kpi-sub">Build: <strong>${b}</strong> &nbsp;|&nbsp; Edit: <strong>${e}</strong></div></div>`;
+  document.getElementById('kpiRow').innerHTML = MEMBERS.map((m,i)=>{
+    const b=calcBuild(m,currentMonth), e=calcEdit(m,currentMonth);
+    const col=PERSON_COLORS[i];
+    return`<div class="kpi" style="border-top:3px solid ${col}">
+      <div class="kpi-name">${m}</div>
+      <div class="kpi-val" style="color:${col}">${+(b+e).toFixed(2)}<span style="font-size:12px;color:var(--muted);font-weight:400"> hrs</span></div>
+      <div class="kpi-sub">Build: <strong>${b}</strong> &nbsp;|&nbsp; Edit: <strong>${e}</strong></div>
+    </div>`;
   }).join('');
 }
 
 // ════════════════════════════════════════
-//  CHART
+//  CHARTS
 // ════════════════════════════════════════
-let combinedChart;
-function renderChart(){
-  const ctx=document.getElementById('combinedChart').getContext('2d');
-  if(combinedChart)combinedChart.destroy();
-  const gc=isDark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)';
-  const tc=isDark?'#7AB87D':'#4A6F4C';
-  const txc=isDark?'#FFFFFF':'#000000';
-  combinedChart=new Chart(ctx,{type:'bar',
-    data:{labels:MEMBERS,datasets:[
-      {label:'📐 Page Build (hrs)',data:MEMBERS.map(m=>calcBuild(m,currentMonth)),backgroundColor:'#2E7D32bb',borderColor:'#2E7D32',borderWidth:2,borderRadius:8,borderSkipped:false},
-      {label:'✏️ Page Edit (hrs)', data:MEMBERS.map(m=>calcEdit(m,currentMonth)), backgroundColor:'#B14B6Fbb',borderColor:'#B14B6F',borderWidth:2,borderRadius:8,borderSkipped:false}
-    ]},
-    options:{responsive:true,plugins:{
-      legend:{labels:{color:txc,font:{family:'DM Sans',size:13},padding:16}},
-      tooltip:{backgroundColor:isDark?'#111C12':'#fff',borderColor:isDark?'#1E3D20':'#C8E6C9',borderWidth:1,titleColor:txc,bodyColor:tc,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y} hrs`}}
-    },scales:{
-      x:{ticks:{color:tc,font:{size:12}},grid:{color:gc}},
-      y:{ticks:{color:tc},grid:{color:gc},beginAtZero:true,title:{display:true,text:'Hours',color:tc,font:{size:11}}}
-    }}
+let buildChartInst, editChartInst;
+function renderCharts(){
+  const gc  = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+  const tc  = isDark ? '#7AB87D' : '#4A6F4C';
+  const txc = isDark ? '#FFFFFF' : '#000000';
+  const buildData = MEMBERS.map(m => calcBuild(m, currentMonth));
+  const editData  = MEMBERS.map(m => calcEdit(m, currentMonth));
+
+  // ── Column chart — Page Build ──
+  if(buildChartInst) buildChartInst.destroy();
+  buildChartInst = new Chart(document.getElementById('buildChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: MEMBERS,
+      datasets: [{
+        label: 'Page Build (hrs)',
+        data: buildData,
+        backgroundColor: PERSON_COLORS.map(c => c + 'CC'),
+        borderColor: PERSON_COLORS,
+        borderWidth: 2,
+        borderRadius: 8,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: isDark ? '#111C12' : '#fff',
+          borderColor: isDark ? '#1E3D20' : '#C8E6C9',
+          borderWidth: 1, titleColor: txc, bodyColor: tc,
+          callbacks: { label: c => ` ${c.parsed.y} hrs` }
+        }
+      },
+      scales: {
+        x: { ticks: { color: tc, font: { size: 12 } }, grid: { color: gc } },
+        y: { ticks: { color: tc }, grid: { color: gc }, beginAtZero: true,
+             title: { display: true, text: 'Hours', color: tc, font: { size: 11 } } }
+      }
+    }
   });
+  document.getElementById('buildLegend').innerHTML = MEMBERS.map((m,i) =>
+    `<span class="legend-item"><span class="legend-swatch" style="background:${PERSON_COLORS[i]}"></span>${m}: <strong>${buildData[i]} hrs</strong></span>`
+  ).join('');
+
+  // ── Pie chart — Page Edit ──
+  if(editChartInst) editChartInst.destroy();
+  editChartInst = new Chart(document.getElementById('editChart').getContext('2d'), {
+    type: 'pie',
+    data: {
+      labels: MEMBERS,
+      datasets: [{
+        data: editData,
+        backgroundColor: PERSON_COLORS.map(c => c + 'CC'),
+        borderColor: PERSON_COLORS,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: isDark ? '#111C12' : '#fff',
+          borderColor: isDark ? '#1E3D20' : '#C8E6C9',
+          borderWidth: 1, titleColor: txc, bodyColor: tc,
+          callbacks: {
+            label: c => {
+              const tot = editData.reduce((a,b) => a+b, 0);
+              const pct = tot > 0 ? ((c.parsed / tot) * 100).toFixed(1) : 0;
+              return ` ${c.parsed} hrs (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+  const editTotal = editData.reduce((a,b) => a+b, 0);
+  document.getElementById('editLegend').innerHTML = MEMBERS.map((m,i) => {
+    const pct = editTotal > 0 ? ((editData[i] / editTotal) * 100).toFixed(1) : 0;
+    return `<span class="legend-item"><span class="legend-swatch" style="background:${PERSON_COLORS[i]}"></span>${m}: <strong>${editData[i]} hrs (${pct}%)</strong></span>`;
+  }).join('');
 }
 
 // ════════════════════════════════════════
-//  TABLE
+//  SUMMARY TABLE
+//  Per person:
+//    Row 1 — [Person, rowspan=3] | Build badge | Type dropdown | rate | pages | calc hrs
+//    Row 2 — Edit badge | Type dropdown | rate | pages | calc hrs
+//    Row 3 — Total (spans cols 2–6)
 // ════════════════════════════════════════
 function renderTable(){
-  let html='';
-  MEMBERS.forEach((p,pi)=>{
-    const pd=getP(p,currentMonth);
-    const rows=[
-      ...FIXED_BUILD.map(t=>({sec:'Build',type:t,rate:BUILD_RATES[t],pages:pd.build[t]||0,fixed:true})),
-      ...(pd.build.extra||[]).map(r=>({sec:'Build',type:r.label||'Extra',rate:'—',pages:r.pages||0,hrs:r.hrs||0,fixed:false})),
-      ...FIXED_EDIT.map(t=>({sec:'Edit',type:t,rate:EDIT_RATES[t],pages:pd.edit[t]||0,fixed:true})),
-      ...(pd.edit.extra||[]).map(r=>({sec:'Edit',type:r.label||'Extra',rate:'—',pages:r.pages||0,hrs:r.hrs||0,fixed:false})),
-    ];
-    const total=calcTotal(p,currentMonth);
-    rows.forEach((r,ri)=>{
-      const hrs=r.fixed?+(r.pages*(r.rate||0)).toFixed(2):(r.hrs||0);
-      html+=`<tr>
-        ${ri===0?`<td rowspan="${rows.length+1}" style="font-family:'Syne',sans-serif;font-weight:700;color:var(--green);vertical-align:top;padding-top:11px">${p}</td>`:''}
-        <td><span class="badge ${r.sec==='Build'?'bg':'br'}">${r.sec}</span></td>
-        <td>${r.type}</td>
-        <td class="num" style="color:var(--green)">${r.fixed?r.rate:'<span style="color:var(--muted)">manual</span>'}</td>
-        <td class="num">${r.pages}</td>
-        <td class="num" style="color:var(--rose)">${hrs>0?hrs:'—'}</td>
+  let html = '';
+  MEMBERS.forEach((p, pi) => {
+    const pd    = getP(p, currentMonth);
+    const color = PERSON_COLORS[pi];
+    const total = calcTotal(p, currentMonth);
+
+    // Default type = Complex for both sections
+    const bType = 'Complex';
+    const eType = 'Complex';
+
+    const bPages = pd.build[bType] || 0;
+    const bRate  = BUILD_RATES[bType];
+    const bHrs   = +(bPages * bRate).toFixed(2);
+
+    const ePages = pd.edit[eType] || 0;
+    const eRate  = EDIT_RATES[eType];
+    const eHrs   = +(ePages * eRate).toFixed(2);
+
+    const buildOpts = FIXED_BUILD.map(t =>
+      `<option value="${t}"${t===bType?' selected':''}>${t}</option>`
+    ).join('');
+    const editOpts  = FIXED_EDIT.map(t =>
+      `<option value="${t}"${t===eType?' selected':''}>${t}</option>`
+    ).join('');
+
+    html += `
+      <tr>
+        <td rowspan="3" class="person-cell"
+          style="color:${color};border-left:3px solid ${color};padding-left:10px;">
+          ${p}
+        </td>
+        <td><span class="badge bg">Build</span></td>
+        <td>
+          <select class="type-sel" id="sel_${pi}_build"
+            onchange="onTypeChange(${pi},'build')">
+            ${buildOpts}
+          </select>
+        </td>
+        <td class="num" id="rate_${pi}_build" style="color:var(--green)">${bRate}</td>
+        <td class="num" id="pages_${pi}_build">${bPages}</td>
+        <td class="num" id="hrs_${pi}_build" style="color:var(--rose)">${bHrs > 0 ? bHrs : '—'}</td>
+      </tr>
+      <tr>
+        <td><span class="badge br">Edit</span></td>
+        <td>
+          <select class="type-sel" id="sel_${pi}_edit"
+            onchange="onTypeChange(${pi},'edit')">
+            ${editOpts}
+          </select>
+        </td>
+        <td class="num" id="rate_${pi}_edit" style="color:var(--green)">${eRate}</td>
+        <td class="num" id="pages_${pi}_edit">${ePages}</td>
+        <td class="num" id="hrs_${pi}_edit" style="color:var(--rose)">${eHrs > 0 ? eHrs : '—'}</td>
+      </tr>
+      <tr class="totrow">
+        <td colspan="4"
+          style="color:var(--muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px">
+          Total
+        </td>
+        <td></td>
+        <td class="num" id="tot_${pi}" style="color:${color};font-size:13px">${total} hrs</td>
       </tr>`;
-    });
-    html+=`<tr class="totrow"><td colspan="4" style="color:var(--muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px">Total</td><td></td><td class="num" style="color:var(--green);font-size:13px">${total} hrs</td></tr>`;
   });
-  document.getElementById('tableBody').innerHTML=html;
+  document.getElementById('tableBody').innerHTML = html;
+}
+
+// ── Fires when a type dropdown changes
+function onTypeChange(pi, sec){
+  const p      = MEMBERS[pi];
+  const pd     = getP(p, currentMonth);
+  const selEl  = document.getElementById(`sel_${pi}_${sec}`);
+  const type   = selEl.value;
+  const rates  = sec === 'build' ? BUILD_RATES : EDIT_RATES;
+  const rate   = rates[type] !== undefined ? rates[type] : null;
+  const pages  = (pd[sec] && pd[sec][type] !== undefined) ? (pd[sec][type] || 0) : 0;
+  const hrs    = rate !== null ? +(pages * rate).toFixed(2) : pages;
+
+  document.getElementById(`rate_${pi}_${sec}`).textContent  = rate !== null ? rate : 'manual';
+  document.getElementById(`pages_${pi}_${sec}`).textContent = pages;
+  document.getElementById(`hrs_${pi}_${sec}`).textContent   = hrs > 0 ? hrs : '—';
 }
 
 // ════════════════════════════════════════
@@ -653,7 +586,6 @@ function buildEntryPanel(){
   document.getElementById('personTabs').innerHTML=MEMBERS.map(p=>`<button class="ptab ${p===activePerson?'active':''}" onclick="switchPerson('${p}')">${p}</button>`).join('');
   document.getElementById('personForms').innerHTML=MEMBERS.map(p=>{const pd=srcData?(srcData[p]||emptyPerson()):emptyPerson();return`<div class="pform ${p===activePerson?'active':''}" id="pf_${p}">${personFormHTML(p,pd)}</div>`;}).join('');
 }
-
 function personFormHTML(person,pd){
   const P=pid(person);
   function section(label,secKey,types,rates){
@@ -697,17 +629,12 @@ function liveCalc(P,secKey,type,rate){const pages=+(document.getElementById(`inp
 function refreshSec(P,secKey){const types=secKey==='build'?FIXED_BUILD:FIXED_EDIT;const rates=secKey==='build'?BUILD_RATES:EDIT_RATES;let total=types.reduce((s,t)=>s+(+(document.getElementById(`inp_${P}_${secKey}_${t}`)?.value||0))*rates[t],0);document.querySelectorAll(`[id^="${P}_${secKey}_ex_"][id$="_hrs"]`).forEach(el=>{total+=(+el.value||0);});const el=document.getElementById(`sec_${P}_${secKey}`);if(el)el.textContent=total>0?+total.toFixed(2)+' hrs':'—';refreshGrand(P);}
 function refreshGrand(P){let total=0;['build','edit'].forEach(sec=>{const types=sec==='build'?FIXED_BUILD:FIXED_EDIT;const rates=sec==='build'?BUILD_RATES:EDIT_RATES;types.forEach(t=>{total+=(+(document.getElementById(`inp_${P}_${sec}_${t}`)?.value||0))*rates[t];});document.querySelectorAll(`[id^="${P}_${sec}_ex_"][id$="_hrs"]`).forEach(el=>{total+=(+el.value||0);});});const el=document.getElementById(`grand_${P}`);if(el)el.textContent=total>0?+total.toFixed(2)+' hrs':'—';}
 function saveAllData(){const key=getEntryKey();if(!DB[key])DB[key]=emptyMonth();MEMBERS.forEach(person=>{const P=pid(person);if(!DB[key][person])DB[key][person]=emptyPerson();['build','edit'].forEach(sec=>{const types=sec==='build'?FIXED_BUILD:FIXED_EDIT;types.forEach(t=>{DB[key][person][sec][t]=+(document.getElementById(`inp_${P}_${sec}_${t}`)?.value||0);});const extras=[];document.querySelectorAll(`[id^="tr_${P}_${sec}_ex_"]`).forEach(tr=>{const rawId=tr.id.replace('tr_','');const le=document.getElementById(`${rawId}_label`);const pe=document.getElementById(`${rawId}_pages`);const he=document.getElementById(`${rawId}_hrs`);if(!he)return;extras.push({label:le?.value||'',pages:+(pe?.value||0),hrs:+(he?.value||0)});});DB[key][person][sec].extra=extras;});});persistDB();currentMonth=key;rebuildMonthSelect();renderDashboard();const msg=document.getElementById('saveMsg');msg.style.display='block';setTimeout(()=>{msg.style.display='none';},3000);}
-
 function showMsg(type,msg){document.getElementById('importOk').style.display='none';document.getElementById('importErr').style.display='none';const el=document.getElementById(type==='ok'?'importOk':'importErr');el.textContent=msg;el.style.display='block';if(type==='ok')setTimeout(()=>{el.style.display='none';},6000);}
 
 // ════════════════════════════════════════
-//  RENDER
+//  RENDER + INIT
 // ════════════════════════════════════════
-function renderDashboard(){renderKPI();renderChart();renderTable();}
-
-// ════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════
+function renderDashboard(){renderKPI();renderCharts();renderTable();}
 rebuildMonthSelect();renderDashboard();
 const now=new Date();
 document.getElementById('entryMonth').value=MONTH_NAMES[now.getMonth()];
